@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
-           id="org.apache.cordova.tickk.geolocation"
+           id="org.apache.cordova.tickk.geoservice"
       version="0.1.0">
 
     <name>GeoService</name>
     <description>Cordova Tickk GeoService Plugin</description>
     <license>Apache</license>
-    <keywords>cordova,geolocation</keywords>
+    <keywords>cordova,geoservice</keywords>
 
     <!-- android -->
     <platform name="android">

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
+           id="org.apache.cordova.tickk.geolocation"
+      version="0.1.0">
+
+    <name>GeoService</name>
+    <description>Cordova Tickk GeoService Plugin</description>
+    <license>Apache</license>
+    <keywords>cordova,geolocation</keywords>
+
+    <!-- android -->
+    <platform name="android">
+
+        <js-module src="www/geoservice.js" name="geoservice">
+            <clobbers target="navigator.geoservice" />
+        </js-module>
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="GeoService">
+	            <param name="android-package" value="org.apache.cordova.tickk.GeoService"/>
+	        </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        </config-file>
+
+        <source-file src="src/android/GeoService.java" target-dir="src/org/apache/cordova/tickk" />
+        <source-file src="src/android/GeoListener.java" target-dir="src/org/apache/cordova/tickk" />
+
+        <info>
+            You need to install **Google Play Services** from the `Android Extras` section using the Android SDK manager (run `android sdk` under AndroidSDK/tools/).
+
+            You need to add the following line to your `local.properties`
+
+            android.library.reference.1=PATH_TO_ANDROID_SDK/sdk/extras/google/google_play_services/libproject/google-play-services_lib
+        </info>
+
+    </platform>
+
+</plugin>

@@ -1,2 +1,2 @@
-cordova-plugin-tickk-geolocation
+cordova-plugin-Geoservice
 --------------------------------

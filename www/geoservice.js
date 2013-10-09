@@ -19,11 +19,7 @@
  *
 */
 
-var argscheck = require('cordova/argscheck'),
-    utils = require('cordova/utils'),
-    exec = require('cordova/exec'),
-    PositionError = require('./PositionError'),
-    Position = require('./Position');
+var exec = require('cordova/exec'),
 
 
 

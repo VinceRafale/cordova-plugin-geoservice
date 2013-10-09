@@ -6,7 +6,7 @@
 
     <name>GeoService</name>
     <description>Cordova Tickk GeoService Plugin</description>
-    <license>Apache</license>
+    <license>Tickk</license>
     <keywords>cordova,geoservice</keywords>
 
     <!-- android -->

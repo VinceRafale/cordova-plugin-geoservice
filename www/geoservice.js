@@ -25,6 +25,12 @@ var exec = require('cordova/exec'),
 
 var geoservice = {
 
+    lorem: "mesnicka",
+
+    test: function() {
+        console.log("zilko");
+    },
+
     watch: function() {
 
         var success = function() {

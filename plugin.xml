@@ -13,7 +13,7 @@
     <platform name="android">
 
         <js-module src="www/geoservice.js" name="geoservice">
-            <clobbers target="navigator.geoservice" />
+            <clobbers target="geoservice" />
         </js-module>
 
         <config-file target="res/xml/config.xml" parent="/*">

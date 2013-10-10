@@ -12,17 +12,24 @@ var geoservice = {
         return console.log("hide");
     },
 
-    watch: function() {
+    get: function(successCallback) {
 
-        var success = function() {
+        var success = function(position) {
+
             console.log('GeoService.js - success');
+
+            pos = {
+                coords: position
+            };
+            
+            successCallback(pos);
         }
 
         var error = function() {
             console.log('GeoService.js - error');
         }
 
-        exec(success, error, 'GeoService', 'watch', []);
+        exec(success, error, 'GeoService', 'get', []);
     }
 
 };

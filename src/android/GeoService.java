@@ -16,6 +16,7 @@ import android.util.Log;
 public class GeoService extends CordovaPlugin {
 
     private GeoListener geoListener;
+    private CallbackContext mcallbackContext;
 
     /**
      * Constructor.
@@ -31,6 +32,7 @@ public class GeoService extends CordovaPlugin {
             this.geoListener = new GeoListener(this);
 
             if (action.equals("get")) {
+                this.mcallbackContext = callbackContext;
                 this.geoListener.get();
             }
         }
@@ -59,6 +61,8 @@ public class GeoService extends CordovaPlugin {
 
         
         PluginResult result = new PluginResult(PluginResult.Status.OK, loc);
+        result.setKeepCallback(true);
+        mcallbackContext.sendPluginResult(result);
     }
 
 }

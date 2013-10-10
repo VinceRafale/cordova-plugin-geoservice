@@ -43,7 +43,8 @@ public class GeoListener implements
     public void onLocationChanged(Location location) {
         Log.d("[Cordova GeoService]", "GeoListener - location has been updated");
 
-        Log.d("[Cordova GeoService]", "GeoListener - location: " +
+        Log.d("[Cordova GeoService]", "GeoListener - " +
+                Double.toString(location.getAccuracy()) + " at " +
                 Double.toString(location.getLatitude()) + "," +
                 Double.toString(location.getLongitude()));
 

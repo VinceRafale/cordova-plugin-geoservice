@@ -30,6 +30,8 @@ public class GeoListener implements
     // Global variable to hold the current location
     private Location mCurrentLocation;
 
+    private boolean connected = false;
+
     public GeoListener(GeoService service) {
         this.owner = service;
     }
@@ -59,6 +61,7 @@ public class GeoListener implements
     @Override
     public void onConnected(Bundle bundle) {
         Log.d("[Cordova GeoService]", "GeoListener - connected");
+        this.connected = true;
         mLocationClient.requestLocationUpdates(mLocationRequest, this);
     }
 
@@ -79,9 +82,8 @@ public class GeoListener implements
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Log.d("[Cordova GeoService]", "GeoListener - connection failed");
     }
-    
-    public void get() {
 
+    private void create() {
         // Create the LocationRequest object
         mLocationRequest = LocationRequest.create();
         // Use high accuracy
@@ -96,6 +98,21 @@ public class GeoListener implements
         mLocationClient = new LocationClient(context, this, this);
 
         mLocationClient.connect();
+        this.connected = 
+    }
+    
+    public void get() {
+        if (!this.connected) {
+
+        }
+
+    }
+
+    public void watch() {
+
+    }
+
+    public void stop() {
 
     }
 }

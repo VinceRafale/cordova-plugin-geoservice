@@ -30,11 +30,17 @@ public class GeoService extends CordovaPlugin {
 
         if (this.geoListener == null) {
             this.geoListener = new GeoListener(this);
+            this.mcallbackContext = callbackContext;
+        }
 
-            if (action.equals("get")) {
-                this.mcallbackContext = callbackContext;
-                this.geoListener.get();
-            }
+        if (action.equals("get")) {
+            this.geoListener.get();
+        }
+        if (action.equals("watch")) {
+            this.geoListener.watch();
+        }
+        if (action.equals("stop")) {
+            this.geoListener.stop();
         }
 
 

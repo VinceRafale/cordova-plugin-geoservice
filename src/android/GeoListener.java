@@ -1,5 +1,7 @@
 package org.apache.cordova.tickk;
 
+//import java.lang.Boolean;
+
 import android.location.Location;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -27,10 +29,12 @@ public class GeoListener implements
     // Stores the current instantiation of the location client in this object
     private LocationClient mLocationClient;
 
-    // Global variable to hold the current location
-    private Location mCurrentLocation;
-
-    private boolean connected = false;
+    // says status of location client
+    // * null - no connetion initiated
+    // * false - connecting
+    // * true - connected
+    private Boolean connected = null;
+    private String action = "none";
 
     public GeoListener(GeoService service) {
         this.owner = service;
@@ -62,7 +66,7 @@ public class GeoListener implements
     public void onConnected(Bundle bundle) {
         Log.d("[Cordova GeoService]", "GeoListener - connected");
         this.connected = true;
-        mLocationClient.requestLocationUpdates(mLocationRequest, this);
+        this.performAction();
     }
 
     /*
@@ -84,6 +88,7 @@ public class GeoListener implements
     }
 
     private void create() {
+        this.connected = false;
         // Create the LocationRequest object
         mLocationRequest = LocationRequest.create();
         // Use high accuracy
@@ -98,21 +103,46 @@ public class GeoListener implements
         mLocationClient = new LocationClient(context, this, this);
 
         mLocationClient.connect();
-        this.connected = 
+    }
+
+    private void performAction() {
+        Log.d("[Cordova GeoService]", "GeoListener - perofming action");
+        if (this.action == "watch"){
+            this.mLocationClient.requestLocationUpdates(mLocationRequest, this);
+        } else if (this.action == "get"){
+            Location location = mLocationClient.getLastLocation();
+            this.owner.win(location);
+        } else if (this.action == "stop"){
+            this.mLocationClient.removeLocationUpdates(this);
+        }
+        this.action = "none";
     }
     
     public void get() {
-        if (!this.connected) {
-
+        this.action = "get";
+        if (this.connected == null) {
+            this.create();
+        } else if (this.connected == true) {
+            this.performAction();
         }
 
     }
 
     public void watch() {
-
+        this.action = "watch";
+        if (this.connected == null) {
+            this.create();
+        } else if (this.connected == true) {
+            this.performAction();
+        }
     }
 
     public void stop() {
-
+        this.action = "stop";
+        if (this.connected == null) {
+            this.create();
+        } else if (this.connected == true) {
+            this.performAction();
+        }
     }
 }

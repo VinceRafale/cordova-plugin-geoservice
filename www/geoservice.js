@@ -42,7 +42,12 @@ var geoservice = {
         }
 
         exec(success, error, 'GeoService', 'watch', []);
+    },
+
+    stop: function() {
+        exec(null, null, 'GeoService', 'stop', []);
     }
+
 
 };
 
